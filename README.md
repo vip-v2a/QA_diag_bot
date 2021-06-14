@@ -53,11 +53,13 @@ For more infomation, see [Working with Dialogflow using Python Client](https://m
 ### Get VK community token
 
 You need:
-- create community on the ["control" tab](https://vk.com/groups?tab=admin)
-- get vk community token: "Manage" - "API usage" - button "Create token" - checkbox "Allow access to community management" and "Allow access to community messages" - add `VK_TOKEN` in `.env`
-- allow to send message: "Manage" - "Messages" - "Community message" is "Enabled" - type "Greeting message" (for example, "Hello, have you questions?") - button "Save"
+- create community on the ["control" tab](https://vk.com/groups?tab=admin).
+- get vk community token: "Manage" - "API usage" - button "Create token" - checkbox "Allow access to community management" and "Allow access to community messages" - add `VK_TOKEN` in `.env`.
+- allow to send message: "Manage" - "Messages" - "Community message" is "Enabled" - type "Greeting message" (for example, "Hello, have you questions?") - button "Save".
 
 ### Features vk_bot.py
 
-if you want to work with longpoll `bot_longpoll.py` from [vk_api examples](https://github.com/python273/vk_api/tree/master/examples), you need: "Manage" - "API usage" - "LongPoll" set "Enabled" and select version API `>5.80`
+Note: if you want to work with longpoll `bot_longpoll.py` from [vk_api examples](https://github.com/python273/vk_api/tree/master/examples), you need: "Manage" - "API usage" - "LongPoll" set "Enabled" and select version API `>5.80`.
 
+### Fitting of Dialogflow agent
+To fit agent you need run `fit_bot.py`. You can add or modify training phrases in `questions.json` file
