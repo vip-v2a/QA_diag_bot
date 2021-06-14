@@ -1,5 +1,5 @@
 # Dialogflow chatbot
-The chatbot answers the most frequent questions from users.
+The chatbot answers the most frequent questions from users from telegram or VK.
 
 ## Getting Started
 
