@@ -56,26 +56,19 @@ def main():
 
             get_answer_dialogflow(event, vk)
             logging.info(
-                f"""Новое сообщение: \nДля меня от: \
-                {event.obj.from_id}\nТекст: \
-                {event.obj.text}
-                """
+                "Новое сообщение: \nДля меня от:"
+                f"{event.obj.from_id}\nТекст: {event.obj.text}"
             )
 
         elif event.type == VkBotEventType.MESSAGE_REPLY:
             logging.info(
-                f"""Новое сообщение: \nОт меня для: \
-                {event.obj.peer_id}\nТекст: \
-                {event.obj.text}\n
-                """
+                "Новое сообщение: \nОт меня для: "
+                f"{event.obj.peer_id}\nТекст: {event.obj.text}\n"
             )
 
         elif event.type == VkBotEventType.MESSAGE_TYPING_STATE:
             logging.info(
-                f"""Печатает \
-                {event.obj.from_id} для \
-                {event.obj.to_id}\n
-                """
+                f"Печатает {event.obj.from_id} для {event.obj.to_id}\n"
             )
 
         elif event.type == VkBotEventType.GROUP_JOIN:
