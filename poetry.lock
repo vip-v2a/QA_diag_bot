@@ -322,6 +322,17 @@ version = "2.4.7"
 
 [[package]]
 category = "main"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+name = "python-dotenv"
+optional = false
+python-versions = "*"
+version = "0.17.1"
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
+category = "main"
 description = "We have made you a wrapper you can't refuse"
 name = "python-telegram-bot"
 optional = false
@@ -434,7 +445,7 @@ vkaudio = ["beautifulsoup4"]
 vkstreaming = ["websocket-client"]
 
 [metadata]
-content-hash = "70e96fa07da575c8c1a9b4c02076047eadb5d74fea36850da01837834e502c23"
+content-hash = "4037658e39f8b6d976da769dfdfd74de4e5e907cf7a85d73372f59ab248a7117"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -699,6 +710,10 @@ pycparser = [
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
+]
+python-dotenv = [
+    {file = "python-dotenv-0.17.1.tar.gz", hash = "sha256:b1ae5e9643d5ed987fc57cc2583021e38db531946518130777734f9589b3141f"},
+    {file = "python_dotenv-0.17.1-py2.py3-none-any.whl", hash = "sha256:00aa34e92d992e9f8383730816359647f358f4a3be1ba45e5a5cefd27ee91544"},
 ]
 python-telegram-bot = [
     {file = "python-telegram-bot-13.5.tar.gz", hash = "sha256:83dbf4cd46327fd818bb6655f2508024a0ade68ebdb3544da35c469adc23bddb"},
