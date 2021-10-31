@@ -1,6 +1,14 @@
 # Dialogflow chatbot
 The chatbot answers the most frequent user's questions from telegram or VK.
 
+## Example
+VK bot answers:
+![](https://github.com/vip-v2a/ext/vk_bot_dialog.gif)
+
+Telegram bot answers:
+![](https://github.com/vip-v2a/ext/tg_bot_dialog.gif)
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -9,7 +17,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 You need create environment variables:
 - `BOT_TOKEN` from @Bot_father.
-- `GOOGLE_APPLICATION_CREDENTIALS` contains "private_key.json". 
+- `GOOGLE_APPLICATION_CREDENTIALS` contains `private_key.json`. 
 How to get json key see below.
 - `PRJ_ID` Project ID from Project Info in your google cloud console.
 - `TELEGRAM_ID` your telegram id from @userinfobot (type command: "/start").
@@ -20,7 +28,6 @@ You need install `requirements.txt`
 ```    
 pip install -r requirements.txt
 ```
-
 
 ### Create JSON KEY
 
@@ -49,7 +56,6 @@ Note: The Role field affects which resources your service account can access in 
 
 For more infomation, see [Working with Dialogflow using Python Client](https://medium.com/swlh/working-with-dialogflow-using-python-client-cb2196d579a4).
 
-
 ### Get VK community token
 
 You need:
@@ -63,3 +69,26 @@ Note: if you want to work with longpoll `bot_longpoll.py` from [vk_api examples]
 
 ### Fitting of Dialogflow agent
 To fit agent you need run `fit_bot.py`. You can add or modify training phrases in `questions.json` file.
+
+### Deploy on Heroku
+- Repository has `.Procfile` to deploy on Heroku.
+- Logs are printed into Telegram (`TELEGRAM_ID`).
+
+To deploy on [Heroku](https://heroku.com/): 
+- create a new app on European server.
+- create Reveal Config Vars from 'Settings' tab (How to generate a Google credential see below). 
+- open 'Deploy' tab on the top menu.
+- connect to your github profile.
+- select your bots repository.
+- choose a branch to deploy 'master' .
+- press 'Deploy Branch'.
+- waiting 'Your app was successfully deployed'.
+- go to 'Recources' tab.
+- turn on dynos (if need, edit dino formation -> then switch ON dino app -> confirm).
+- drink a cup of tea)
+
+### To generate a Google credential file based on Heroku Config Vars:
+
+1. Create Config Vars key `GOOGLE_CREDENTIALS` and paste the content of service account credential JSON file `private_key.json` as is.
+2. Create a key under Config Vars `GOOGLE_APPLICATION_CREDENTIALS` and set a value as `google-credentials.json`.
+3. Enter Buildack URL: `https://github.com/gerywahyunugraha/heroku-google-application-credentials-buildpack`
