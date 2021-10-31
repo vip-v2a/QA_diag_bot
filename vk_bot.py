@@ -2,18 +2,18 @@ import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import os
 import time
-from Dialogflow import PRJ_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
 from dotenv import load_dotenv
 import logging
+from Dialogflow import PRJ_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
+from bots_logger import TelegramLogsHandler, VK_STRFMT
 
-
-def get_answer_dialogflow(event, vk):
+def get_answer_dialogflow(event, vk, _user_id):
 
     text = event.obj.text
 
     answer, intent_name, confidence, is_fallback = detect_intent_texts(
         project_id=PRJ_ID,
-        session_id=TELEGRAM_ID,
+        session_id=_user_id,
         text=text,
         language_code=LANGUAGE_CODE
     )
@@ -36,14 +36,18 @@ def echo(event, vk):
 
 def main():
 
-    logging.basicConfig(
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        level=logging.INFO
-    )
-
     load_dotenv()
     vk_token = os.getenv("VK_TOKEN")
     vk_bot_id = os.getenv("VK_BOT_ID")
+    bot_token = os.getenv("BOT_TOKEN")
+
+    logger = logging.getLogger(__file__)
+    tg_handler = TelegramLogsHandler(
+        bot_token=bot_token,
+        chat_id=TELEGRAM_ID,
+        fmt=VK_STRFMT
+    )
+    logger.addHandler(tg_handler)
 
     vk_session = vk_api.VkApi(token=vk_token)
     vk = vk_session.get_api()
@@ -53,36 +57,37 @@ def main():
     for event in longpoll.listen():
 
         if event.type == VkBotEventType.MESSAGE_NEW:
-
-            get_answer_dialogflow(event, vk)
-            logging.info(
+            
+            vk_user_id = event.obj.from_id
+            get_answer_dialogflow(event, vk, vk_user_id)
+            logger.info(
                 "Новое сообщение: \nДля меня от:"
-                f"{event.obj.from_id}\nТекст: {event.obj.text}"
+                f"{vk_user_id}\nТекст: {event.obj.text}"
             )
 
         elif event.type == VkBotEventType.MESSAGE_REPLY:
-            logging.info(
+            logger.info(
                 "Новое сообщение: \nОт меня для: "
                 f"{event.obj.peer_id}\nТекст: {event.obj.text}\n"
             )
 
         elif event.type == VkBotEventType.MESSAGE_TYPING_STATE:
-            logging.info(
+            logger.info(
                 f"Печатает {event.obj.from_id} для {event.obj.to_id}\n"
             )
 
         elif event.type == VkBotEventType.GROUP_JOIN:
-            logging.info(
+            logger.info(
                 f"Вступил в группу {event.obj.user_id}"
             )
 
         elif event.type == VkBotEventType.GROUP_LEAVE:
-            logging.info(
+            logger.info(
                 f"Покинул группу {event.obj.user_id}"
             )
 
         else:
-            logging.info(f"{event.type}")
+            logger.info(f"{event.type}")
 
 if __name__ == "__main__":
     main()

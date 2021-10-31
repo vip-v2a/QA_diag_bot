@@ -7,10 +7,7 @@ PRJ_ID = os.getenv("PRJ_ID")
 TELEGRAM_ID = os.getenv("TELEGRAM_ID")
 LANGUAGE_CODE = "ru"
 
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=logging.INFO
-)
+logger = logging.getLogger(__file__)
 
 
 def explicit():
@@ -20,7 +17,7 @@ def explicit():
     )
 
     buckets = list(storage_client.list_buckets())
-    logging.info(buckets)
+    logger.info(buckets)
 
 
 def detect_intent_texts(project_id, session_id, text, language_code):
@@ -78,7 +75,7 @@ def create_intent(
         request={"parent": parent, "intent": intent}
     )
 
-    logging.info("Intent created: {}".format(response))
+    logger.info("Intent created: {}".format(response))
 
 
 def train_agent(project_id):
@@ -89,4 +86,4 @@ def train_agent(project_id):
         request={"parent": parent}
     )
 
-    logging.info(f"Обучение выполнено: {response.done()}")
+    logger.info(f"Обучение выполнено: {response.done()}")

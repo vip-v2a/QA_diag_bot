@@ -1,14 +1,15 @@
 import logging
 import telegram
 
-STRFMT = '[%(asctime)s] [%(name)s] [%(levelname)s] > %(message)s'
+VK_STRFMT = '[%(asctime)s] [%(name)s] [%(levelname)s] > %(message)s'
+TG_STRFMT = '[%(asctime)s] [%(name)s] [%(levelname)s] > %(message)s'
 DATEFFMT = '%Y-%m-%d %H:%M:%S'
 
 
-class MyLogsHandler(logging.Handler):
+class TelegramLogsHandler(logging.Handler):
     
 
-    def __init__(self, logging_level=logging.DEBUG, bot_token=None, chat_id=None, fmt=STRFMT, datefmt=DATEFFMT):
+    def __init__(self, logging_level=logging.DEBUG, bot_token=None, chat_id=None, fmt=None, datefmt=DATEFFMT):
         super().__init__(logging_level)
         self.bot = telegram.Bot(token=bot_token)
         self.chat_id = chat_id
