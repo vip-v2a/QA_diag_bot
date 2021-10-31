@@ -3,10 +3,10 @@ The chatbot answers the most frequent user's questions from telegram or VK.
 
 ## Example
 VK bot answers:
-![](https://github.com/vip-v2a/ext/vk_bot_dialog.gif)
+![](https://github.com/vip-v2a/QA_diag_bot/blob/959617b8b53b0b1694e6016d6cb71849c18078b2/ext/vk_bot_dialog.gif)
 
 Telegram bot answers:
-![](https://github.com/vip-v2a/ext/tg_bot_dialog.gif)
+![](https://github.com/vip-v2a/QA_diag_bot/blob/959617b8b53b0b1694e6016d6cb71849c18078b2/ext/tg_bot_dialog.gif)
 
 
 ## Getting Started
