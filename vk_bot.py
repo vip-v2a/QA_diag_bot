@@ -7,6 +7,9 @@ import logging
 from Dialogflow import PRJ_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
 from bots_logger import TelegramLogsHandler, VK_STRFMT
 
+logger = logging.getLogger(__file__)
+
+
 def get_answer_dialogflow(event, vk, _user_id):
 
     text = event.obj.text
@@ -41,13 +44,14 @@ def main():
     vk_bot_id = os.getenv("VK_BOT_ID")
     bot_token = os.getenv("BOT_TOKEN")
 
-    logger = logging.getLogger(__file__)
     tg_handler = TelegramLogsHandler(
         bot_token=bot_token,
         chat_id=TELEGRAM_ID,
         fmt=VK_STRFMT
     )
+    logger.setLevel(logging.INFO)
     logger.addHandler(tg_handler)
+    logger.info("vk-bot started")
 
     vk_session = vk_api.VkApi(token=vk_token)
     vk = vk_session.get_api()
@@ -60,29 +64,29 @@ def main():
             
             vk_user_id = event.obj.from_id
             get_answer_dialogflow(event, vk, vk_user_id)
-            logger.info(
+            logger.debug(
                 "Новое сообщение: \nДля меня от:"
                 f"{vk_user_id}\nТекст: {event.obj.text}"
             )
 
         elif event.type == VkBotEventType.MESSAGE_REPLY:
-            logger.info(
+            logger.debug(
                 "Новое сообщение: \nОт меня для: "
                 f"{event.obj.peer_id}\nТекст: {event.obj.text}\n"
             )
 
         elif event.type == VkBotEventType.MESSAGE_TYPING_STATE:
-            logger.info(
+            logger.debug(
                 f"Печатает {event.obj.from_id} для {event.obj.to_id}\n"
             )
 
         elif event.type == VkBotEventType.GROUP_JOIN:
-            logger.info(
+            logger.debug(
                 f"Вступил в группу {event.obj.user_id}"
             )
 
         elif event.type == VkBotEventType.GROUP_LEAVE:
-            logger.info(
+            logger.debug(
                 f"Покинул группу {event.obj.user_id}"
             )
 

@@ -1,8 +1,11 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 import os
-from Dialogflow import PRJ_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
 from dotenv import load_dotenv
+from Dialogflow import PRJ_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
+from bots_logger import TelegramLogsHandler, TG_STRFMT
+
+logger = logging.getLogger(__file__)
 
 
 def start(update, context):
@@ -28,18 +31,22 @@ def get_answer(update, context):
 
 
 def error(update, error):
-    logging.warning("Update '%s' caused error '%s'", update, error)
+    logger.warning("Update '%s' caused error '%s'", update, error)
 
 
 def main():
 
-    logging.basicConfig(
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        level=logging.INFO
-    )
-
     load_dotenv()
     bot_token = os.getenv("BOT_TOKEN")
+
+    tg_handler = TelegramLogsHandler(
+        bot_token=bot_token,
+        chat_id=TELEGRAM_ID,
+        fmt=TG_STRFMT
+    )
+    logger.setLevel(logging.INFO)
+    logger.addHandler(tg_handler)
+    logger.info("tg-bot started")
 
     updater = Updater(token=bot_token, use_context=True)
 
@@ -52,10 +59,6 @@ def main():
     dp.add_error_handler(error)
 
     updater.start_polling()
-
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
 
