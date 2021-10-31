@@ -61,7 +61,7 @@ def main():
     for event in longpoll.listen():
 
         if event.type == VkBotEventType.MESSAGE_NEW:
-            
+
             vk_user_id = event.obj.from_id
             get_answer_dialogflow(event, vk, vk_user_id)
             logger.debug(

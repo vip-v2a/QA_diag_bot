@@ -7,9 +7,15 @@ DATEFFMT = '%Y-%m-%d %H:%M:%S'
 
 
 class TelegramLogsHandler(logging.Handler):
-    
 
-    def __init__(self, logging_level=logging.DEBUG, bot_token=None, chat_id=None, fmt=None, datefmt=DATEFFMT):
+    def __init__(
+        self,
+        logging_level=logging.DEBUG,
+        bot_token=None,
+        chat_id=None,
+        fmt=None,
+        datefmt=DATEFFMT
+    ):
         super().__init__(logging_level)
         self.bot = telegram.Bot(token=bot_token)
         self.chat_id = chat_id
@@ -17,11 +23,9 @@ class TelegramLogsHandler(logging.Handler):
         self.setFormatter(formatter)
         self.setLevel(logging_level)
 
-    
     def emit(self, record):
         log_entry = self.format(record)
         self.bot.send_message(
             chat_id=self.chat_id,
             text=log_entry
         )
-        
