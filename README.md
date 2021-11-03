@@ -68,7 +68,10 @@ You need:
 Note: if you want to work with longpoll `bot_longpoll.py` from [vk_api examples](https://github.com/python273/vk_api/tree/master/examples), you need: "Manage" - "API usage" - "LongPoll" set "Enabled" and select version API `>5.80`.
 
 ### Fitting of Dialogflow agent
-To fit agent you need run `fit_bot.py`. You can add or modify training phrases in `questions.json` file.
+To fit agent you need run `fit_bot.py`. You can add or modify training phrases in `questions.json` file. You can specify questions file path in optional argument `--filepath` (`-fp`):
+```
+python fit_bot.py -fp "example.json"
+```
 
 ### Deploy on Heroku
 - Repository has `.Procfile` to deploy on Heroku.
