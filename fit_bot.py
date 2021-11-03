@@ -9,13 +9,13 @@ logger = logging.getLogger(__file__)
 
 def main():
     logger.setLevel(logging.INFO)
-    
+
     ch = logging.StreamHandler()
     fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     formatter = logging.Formatter(fmt)
     ch.setFormatter(formatter)
     logger.addHandler(ch)
-    
+
     parser = argparse.ArgumentParser(
         description="Fitting the Dialogflow agent by questions"
     )

@@ -4,7 +4,9 @@ import os
 import time
 from dotenv import load_dotenv
 import logging
-from Dialogflow import PROJECT_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
+from Dialogflow import (
+    PROJECT_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
+)
 from bots_logger import TelegramLogsHandler, VK_STRFMT
 
 logger = logging.getLogger(__file__)

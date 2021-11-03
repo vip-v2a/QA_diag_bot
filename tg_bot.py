@@ -2,7 +2,9 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 import os
 from dotenv import load_dotenv
-from Dialogflow import PROJECT_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
+from Dialogflow import (
+    PROJECT_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
+)
 from bots_logger import TelegramLogsHandler, TG_STRFMT
 
 logger = logging.getLogger(__file__)
