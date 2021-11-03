@@ -19,7 +19,7 @@ You need create environment variables:
 - `BOT_TOKEN` from @Bot_father.
 - `GOOGLE_APPLICATION_CREDENTIALS` contains `private_key.json`. 
 How to get json key see below.
-- `PRJ_ID` Project ID from Project Info in your google cloud console.
+- `PROJECT_ID` Project ID from Project Info in your google cloud console.
 - `TELEGRAM_ID` your telegram id from @userinfobot (type command: "/start").
 - `VK_BOT_ID` number XXXXXXXXX from URL of your community: "https://vk.com/clubXXXXXXXXX"
 - `VK_TOKEN` your VK community token. How to get vk community token see below.

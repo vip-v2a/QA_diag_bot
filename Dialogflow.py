@@ -3,7 +3,7 @@ from google.cloud import storage
 from google.cloud import dialogflow
 import logging
 
-PROJECT_ID = os.getenv("PRJ_ID")
+PROJECT_ID = os.getenv("PROJECT_ID")
 TELEGRAM_ID = os.getenv("TELEGRAM_ID")
 LANGUAGE_CODE = "ru"
 
