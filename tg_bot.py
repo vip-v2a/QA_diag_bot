@@ -2,7 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 import os
 from dotenv import load_dotenv
-from Dialogflow import PRJ_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
+from Dialogflow import PROJECT_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
 from bots_logger import TelegramLogsHandler, TG_STRFMT
 
 logger = logging.getLogger(__file__)
@@ -21,7 +21,7 @@ def help(update, context):
 def get_answer(update, context):
     text = update.message.text
     answer, intent_name, confidence, is_fallback = detect_intent_texts(
-        project_id=PRJ_ID,
+        project_id=PROJECT_ID,
         session_id=TELEGRAM_ID,
         text=text,
         language_code=LANGUAGE_CODE

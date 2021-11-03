@@ -4,7 +4,7 @@ import os
 import time
 from dotenv import load_dotenv
 import logging
-from Dialogflow import PRJ_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
+from Dialogflow import PROJECT_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
 from bots_logger import TelegramLogsHandler, VK_STRFMT
 
 logger = logging.getLogger(__file__)
@@ -15,7 +15,7 @@ def get_answer_dialogflow(event, vk, _user_id):
     text = event.obj.text
 
     answer, intent_name, confidence, is_fallback = detect_intent_texts(
-        project_id=PRJ_ID,
+        project_id=PROJECT_ID,
         session_id=_user_id,
         text=text,
         language_code=LANGUAGE_CODE

@@ -2,7 +2,7 @@ import os
 import json
 import argparse
 import logging
-from Dialogflow import create_intent, PRJ_ID, train_agent
+from Dialogflow import create_intent, PROJECT_ID, train_agent
 
 logger = logging.getLogger(__file__)
 
@@ -44,12 +44,12 @@ def main():
         intent_answer = intent["answer"]
 
         create_intent(
-            PRJ_ID,
+            PROJECT_ID,
             intent_name,
             intent_questions,
             (intent_answer,)
         )
-        train_agent(PRJ_ID)
+        train_agent(PROJECT_ID)
         logger.info("Agent training started")
 
 
