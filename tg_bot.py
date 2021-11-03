@@ -20,7 +20,7 @@ def help(update, context):
 
 def get_answer(update, context):
     text = update.message.text
-    answer, intent_name, confidence, is_fallback = detect_intent_texts(
+    answer, *others = detect_intent_texts(
         project_id=PROJECT_ID,
         session_id=TELEGRAM_ID,
         text=text,

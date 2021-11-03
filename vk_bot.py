@@ -14,7 +14,7 @@ def get_answer_dialogflow(event, vk, _user_id):
 
     text = event.obj.text
 
-    answer, intent_name, confidence, is_fallback = detect_intent_texts(
+    answer, *others, is_fallback = detect_intent_texts(
         project_id=PROJECT_ID,
         session_id=_user_id,
         text=text,
