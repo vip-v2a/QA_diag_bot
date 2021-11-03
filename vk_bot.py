@@ -25,7 +25,7 @@ def get_answer_dialogflow(event, vk, _user_id):
         vk.messages.send(
             user_id=event.obj.peer_id,
             message=answer,
-            random_id=int(time.time())
+            random_id=vk_api.utils.get_random_id()
         )
 
 
@@ -53,37 +53,8 @@ def main():
     for event in longpoll.listen():
 
         if event.type == VkBotEventType.MESSAGE_NEW:
-
             vk_user_id = event.obj.from_id
             get_answer_dialogflow(event, vk, vk_user_id)
-            logger.debug(
-                "Новое сообщение: \nДля меня от:"
-                f"{vk_user_id}\nТекст: {event.obj.text}"
-            )
-
-        elif event.type == VkBotEventType.MESSAGE_REPLY:
-            logger.debug(
-                "Новое сообщение: \nОт меня для: "
-                f"{event.obj.peer_id}\nТекст: {event.obj.text}\n"
-            )
-
-        elif event.type == VkBotEventType.MESSAGE_TYPING_STATE:
-            logger.debug(
-                f"Печатает {event.obj.from_id} для {event.obj.to_id}\n"
-            )
-
-        elif event.type == VkBotEventType.GROUP_JOIN:
-            logger.debug(
-                f"Вступил в группу {event.obj.user_id}"
-            )
-
-        elif event.type == VkBotEventType.GROUP_LEAVE:
-            logger.debug(
-                f"Покинул группу {event.obj.user_id}"
-            )
-
-        else:
-            logger.info(f"{event.type}")
 
 if __name__ == "__main__":
     main()
