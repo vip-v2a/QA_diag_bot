@@ -39,11 +39,10 @@ def main():
     except Exception:
         logger.exception()
 
-    for intent_name in questions.keys():
-        intent = questions[intent_name]
+    for intent_name, intent in questions.items():
         intent_questions = intent["questions"]
         intent_answer = intent["answer"]
-        
+
         create_intent(
             PRJ_ID,
             intent_name,
