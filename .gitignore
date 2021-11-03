@@ -2,3 +2,4 @@ poetry.lock
 pyproject.toml
 private_key.json
 __pycache__/
+*devman.py
