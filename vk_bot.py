@@ -29,14 +29,6 @@ def get_answer_dialogflow(event, vk, _user_id):
         )
 
 
-def echo(event, vk):
-    vk.messages.send(
-        user_id=event.obj.peer_id,
-        message=event.obj.text,
-        random_id=int(time.time())
-    )
-
-
 def main():
 
     load_dotenv()
