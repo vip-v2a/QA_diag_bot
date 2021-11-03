@@ -39,11 +39,11 @@ def main():
     except Exception:
         logger.exception()
 
-    intent_display_names = list(questions.keys())
-
-    for intent_name in intent_display_names:
-        intent_questions = questions[intent_name]["questions"]
-        intent_answer = questions[intent_name]["answer"]
+    for intent_name in questions.keys():
+        intent = questions[intent_name]
+        intent_questions = intent["questions"]
+        intent_answer = intent["answer"]
+        
         create_intent(
             PRJ_ID,
             intent_name,
