@@ -1,9 +1,8 @@
+import os
+import logging
+from dotenv import load_dotenv
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
-import os
-import time
-from dotenv import load_dotenv
-import logging
 from Dialogflow import (
     PROJECT_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
 )

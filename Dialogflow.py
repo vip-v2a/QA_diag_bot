@@ -1,23 +1,12 @@
 import os
-from google.cloud import storage
-from google.cloud import dialogflow
 import logging
+from google.cloud import dialogflow
 
 PROJECT_ID = os.getenv("PROJECT_ID")
 TELEGRAM_ID = os.getenv("TELEGRAM_ID")
 LANGUAGE_CODE = "ru"
 
 logger = logging.getLogger(__file__)
-
-
-def explicit():
-
-    storage_client = storage.Client.from_service_account_json(
-        "private_key.json"
-    )
-
-    buckets = list(storage_client.list_buckets())
-    logger.info(buckets)
 
 
 def detect_intent_texts(project_id, session_id, text, language_code):
@@ -32,7 +21,6 @@ def detect_intent_texts(project_id, session_id, text, language_code):
         request={"session": session, "query_input": query_input}
     )
 
-    query_text = response.query_result.query_text
     is_fallback = response.query_result.intent.is_fallback
     intent_display_name = response.query_result.intent.display_name
     int_detection_accuracy = response.query_result.intent_detection_confidence

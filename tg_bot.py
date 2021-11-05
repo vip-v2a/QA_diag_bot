@@ -1,7 +1,7 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-import logging
 import os
+import logging
 from dotenv import load_dotenv
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from Dialogflow import (
     PROJECT_ID, TELEGRAM_ID, LANGUAGE_CODE, detect_intent_texts
 )
@@ -11,7 +11,10 @@ logger = logging.getLogger(__file__)
 
 
 def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Hi!")
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Hi! I answer the most frequent questions"
+    )
 
 
 def help(update, context):
